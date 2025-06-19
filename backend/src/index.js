@@ -17,7 +17,7 @@ app.use(express.json({ limit: "500mb" }));
 app.use(express.urlencoded({ limit: "500mb", extended: true }));
 app.use(
   cors({
-    origin: "http://localhost:5173", // or "*" for Hoppscotch testing
+    origin: true, // Dynamically allow any origin that makes the request
     credentials: true,
   })
 );
