@@ -23,6 +23,9 @@ app.use(
 );
 
 app.use(cookieParser());
+console.log("✅ Checking authRoutes type:", typeof authRoutes);
+console.log("✅ Checking messageRoutes type:", typeof messageRoutes);
+
 app.use("/api/auth", authRoutes);
 app.use("/api/messages", messageRoutes);
 if (process.env.NODE_ENV === "production") {
