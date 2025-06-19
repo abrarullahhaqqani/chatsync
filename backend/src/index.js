@@ -31,17 +31,14 @@ app.use("/api/messages", messageRoutes);
 import fs from "fs";
 
 if (process.env.NODE_ENV === "production") {
-  const indexPath = path.join(__dirname, "../frontend/dist/index.html");
+  const distPath = path.join(__dirname, "../frontend/dist");
+  const indexPath = path.join(distPath, "index.html");
 
-  app.use(express.static(path.join(__dirname, "../frontend/dist")));
+  app.use(express.static(distPath));
 
-  if (fs.existsSync(indexPath)) {
-    app.get("*", (req, res) => {
-      res.sendFile(indexPath);
-    });
-  } else {
-    console.warn("⚠️ index.html not found!");
-  }
+  app.get("/*", (req, res) => {
+    res.sendFile(indexPath);
+  });
 }
 
 server.listen(PORT, () => {
